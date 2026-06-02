@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guião de Salvamento - Ficha de Resgate</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #f5f5f5;
+            --text-muted: #aaaaaa;
+            --accent-red: #e53935;
+            --accent-hover: #ff5252;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+
+        header h1 {
+            color: var(--accent-red);
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        /* Seção da Imagem */
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background-color: white; /* Fundo branco para a imagem sobressair no dark mode */
+            padding: 10px;
+        }
+
+        /* Seção da Legenda */
+        .legend-title {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .legend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+        }
+
+        .legend-item:hover, .legend-item.active {
+            background-color: #333;
+            transform: translateX(5px);
+        }
+
+        /* Cores dinâmicas para cada item da legenda */
+        .item-airbag { border-left-color: #5e35b1; }
+        .item-gas { border-left-color: #8e24aa; }
+        .item-pretensioner { border-left-color: #e53935; }
+        .item-srs { border-left-color: #fdd835; }
+        .item-pedestrian { border-left-color: #ef5350; }
+        .item-spring { border-left-color: #43a047; }
+        .item-battery { border-left-color: #ffeb3b; }
+        .item-fuel { border-left-color: #8b0000; }
+
+        .color-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .legend-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Responsividade para Ecrãs Menores */
+        @media (max-width: 860px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Guião de Salvamento Veicular</h1>
+        <p>Esquema de Desencarceramento e Componentes Críticos</p>
+    </header>
+
+    <main class="container">
+        <section class="card image-container">
+            <img src="image_9a07e9.jpg" alt="Mapa de Salvamento do Veículo">
+        </section>
+
+        <section class="card">
+            <h2 class="legend-title">Legenda de Segurança</h2>
+            <ul class="legend-list" id="legendList">
+                <li class="legend-item item-airbag">
+                    <div class="color-box" style="background-color: #5e35b1; border-radius: 50%;"></div>
+                    <span class="legend-text">Airbag</span>
+                </li>
+                <li class="legend-item item-gas">
+                    <div class="color-box" style="background-color: #8e24aa; width: 12px;"></div>
+                    <span class="legend-text">Gerador de gás</span>
+                </li>
+                <li class="legend-item item-pretensioner">
+                    <div class="color-box" style="background-color: #e53935; border: 3px solid #b71c1c;"></div>
+                    <span class="legend-text">Pré-tensor do cinto de segurança</span>
+                </li>
+                <li class="legend-item item-srs">
+                    <div class="color-box" style="background-color: #fdd835;"></div>
+                    <span class="legend-text">Unidade de controlo SRS</span>
+                </li>
+                <li class="legend-item item-pedestrian">
+                    <div class="color-box" style="background-color: white; border: 2px solid #ef5350;"></div>
+                    <span class="legend-text">Sistema de proteção de pedestres ativo</span>
+                </li>
+                <li class="legend-item item-spring">
+                    <div class="color-box" style="background-color: #43a047; width: 12px;"></div>
+                    <span class="legend-text">Mola de pressão a gás / pré-tensionada</span>
+                </li>
+                <li class="legend-item item-battery">
+                    <div class="color-box" style="background-color: #ffeb3b;"></div>
+                    <span class="legend-text">Bateria de baixa voltagem (12V)</span>
+                </li>
+                <li class="legend-item item-fuel">
+                    <div class="color-box" style="background-color: #8b0000;"></div>
+                    <span class="legend-text">Gasolina / Reservatório de combustível</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        // Adiciona interatividade simples à legenda
+        document.addEventListener('DOMContentLoaded', () => {
+            const legendItems = document.querySelectorAll('.legend-item');
+
+            legendItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Remove a classe active de todos
+                    legendItems.forEach(el => el.classList.remove('active'));
+                    // Adiciona a classe active ao item clicado
+                    item.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
