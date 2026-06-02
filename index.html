@@ -11,7 +11,6 @@
             --text-main: #f5f5f5;
             --text-muted: #aaaaaa;
             --accent-red: #e53935;
-            --accent-hover: #ff5252;
             --border-radius: 12px;
         }
 
@@ -52,8 +51,9 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 3fr 2fr;
+            grid-template-columns: 1.5fr 1fr;
             gap: 30px;
+            align-items: start;
         }
 
         .card {
@@ -63,20 +63,27 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.3);
         }
 
-        /* Seção da Imagem */
+        /* --- CORTAR A IMAGEM DO CARRO --- */
         .image-container {
             text-align: center;
+            background-color: white; 
+            overflow: hidden; 
+            max-height: 550px; 
+            display: flex;
+            justify-content: center;
         }
 
         .image-container img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            border-radius: 8px;
-            background-color: white; /* Fundo branco para a imagem sobressair no dark mode */
-            padding: 10px;
+            object-fit: cover;
+            object-position: top; 
+            /* Corta a parte de baixo onde estava a legenda original */
+            clip-path: inset(0 0 35% 0);
+            margin-bottom: -40%; 
         }
 
-        /* Seção da Legenda */
+        /* --- LEGENDA COM ÍCONES --- */
         .legend-title {
             margin-bottom: 20px;
             font-size: 1.5rem;
@@ -88,42 +95,35 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
+            padding: 10px 15px;
             background-color: #2a2a2a;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-left: 5px solid transparent;
+            border-left: 4px solid transparent;
         }
 
         .legend-item:hover, .legend-item.active {
             background-color: #333;
             transform: translateX(5px);
+            border-left-color: var(--accent-red);
         }
 
-        /* Cores dinâmicas para cada item da legenda */
-        .item-airbag { border-left-color: #5e35b1; }
-        .item-gas { border-left-color: #8e24aa; }
-        .item-pretensioner { border-left-color: #e53935; }
-        .item-srs { border-left-color: #fdd835; }
-        .item-pedestrian { border-left-color: #ef5350; }
-        .item-spring { border-left-color: #43a047; }
-        .item-battery { border-left-color: #ffeb3b; }
-        .item-fuel { border-left-color: #8b0000; }
-
-        .color-box {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
+        .icon-img {
+            width: 35px; 
+            height: auto;
             margin-right: 15px;
             flex-shrink: 0;
-            border: 1px solid rgba(255,255,255,0.2);
+            object-fit: contain;
+            background-color: white; 
+            border-radius: 4px;
+            padding: 4px;
         }
 
         .legend-text {
@@ -132,12 +132,15 @@
         }
 
         /* Responsividade para Ecrãs Menores */
-        @media (max-width: 860px) {
+        @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
             }
-            header h1 {
-                font-size: 1.5rem;
+            .image-container {
+                max-height: auto;
+            }
+            .image-container img {
+                margin-bottom: -35%;
             }
         }
     </style>
@@ -157,36 +160,44 @@
         <section class="card">
             <h2 class="legend-title">Legenda de Segurança</h2>
             <ul class="legend-list" id="legendList">
-                <li class="legend-item item-airbag">
-                    <div class="color-box" style="background-color: #5e35b1; border-radius: 50%;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999f48.png" alt="Airbag" class="icon-img">
                     <span class="legend-text">Airbag</span>
                 </li>
-                <li class="legend-item item-gas">
-                    <div class="color-box" style="background-color: #8e24aa; width: 12px;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999f44.png" alt="Gerador de gás" class="icon-img">
                     <span class="legend-text">Gerador de gás</span>
                 </li>
-                <li class="legend-item item-pretensioner">
-                    <div class="color-box" style="background-color: #e53935; border: 3px solid #b71c1c;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999f2a.png" alt="Pré-tensor do cinto" class="icon-img">
                     <span class="legend-text">Pré-tensor do cinto de segurança</span>
                 </li>
-                <li class="legend-item item-srs">
-                    <div class="color-box" style="background-color: #fdd835;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999f22.png" alt="Controlo SRS" class="icon-img">
                     <span class="legend-text">Unidade de controlo SRS</span>
                 </li>
-                <li class="legend-item item-pedestrian">
-                    <div class="color-box" style="background-color: white; border: 2px solid #ef5350;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999f09.png" alt="Proteção de pedestres" class="icon-img">
                     <span class="legend-text">Sistema de proteção de pedestres ativo</span>
                 </li>
-                <li class="legend-item item-spring">
-                    <div class="color-box" style="background-color: #43a047; width: 12px;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999f03.png" alt="Mola de pressão" class="icon-img">
                     <span class="legend-text">Mola de pressão a gás / pré-tensionada</span>
                 </li>
-                <li class="legend-item item-battery">
-                    <div class="color-box" style="background-color: #ffeb3b;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999ee6.png" alt="Bateria 12V" class="icon-img">
                     <span class="legend-text">Bateria de baixa voltagem (12V)</span>
                 </li>
-                <li class="legend-item item-fuel">
-                    <div class="color-box" style="background-color: #8b0000;"></div>
+                
+                <li class="legend-item">
+                    <img src="image_999ece.png" alt="Combustível" class="icon-img">
                     <span class="legend-text">Gasolina / Reservatório de combustível</span>
                 </li>
             </ul>
@@ -194,15 +205,11 @@
     </main>
 
     <script>
-        // Adiciona interatividade simples à legenda
         document.addEventListener('DOMContentLoaded', () => {
             const legendItems = document.querySelectorAll('.legend-item');
-
             legendItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    // Remove a classe active de todos
                     legendItems.forEach(el => el.classList.remove('active'));
-                    // Adiciona a classe active ao item clicado
                     item.classList.add('active');
                 });
             });
